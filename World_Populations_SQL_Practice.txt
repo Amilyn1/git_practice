@@ -1,0 +1,55 @@
+﻿-- What years are covered in the dataset:
+
+
+SELECT COUNT(*)
+FROM
+(SELECT DISTINCT year 
+FROM population_years);
+
+
+-- Largest population size for Gabon:
+
+
+SELECT MAX(population)
+FROM population_years
+WHERE country = 'Gabon';
+
+
+-- 10 Lowest population countries:
+
+
+SELECT country, population
+FROM population_years
+WHERE year = 2005
+ORDER BY population
+LIMIT 10;
+
+
+-- Countries with population over 100 million in 2010
+
+
+SELECT DISTINCT country
+FROM population_years
+WHERE population > 100000000 AND year = 2010;
+
+
+-- How many countries have "Islands" in their name?
+
+
+SELECT country, COUNT(country)
+FROM population_years
+WHERE country LIKE '%Islands%'
+GROUP BY country;
+
+
+-- Population difference 2000-2010
+
+
+SELECT population
+FROM population_years
+WHERE country = 'Indonesia' AND year = 2000;
+
+
+SELECT population
+FROM population_years
+WHERE country = 'Indonesia' AND year = 2010;
